@@ -3,9 +3,11 @@
 package speedreader;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -28,7 +30,7 @@ public class SpeedreaderGUI extends JFrame {
          frame.setVisible(true);
 	}
 	
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, IOException {
 		
 		//Create the JFrame
 		JFrame f = new JFrame("SpeedReader");
@@ -125,22 +127,35 @@ public class SpeedreaderGUI extends JFrame {
 		//references: 	https://stackoverflow.com/a/1081491
 		//				https://stackoverflow.com/a/39961146
 		
-		f.getContentPane().setBackground(Color.white);
-		panel.setBackground(Color.white);
 		fileButton.setBackground(Color.decode("#d9f3ff"));
 		fileButton.setBorder(BorderFactory.createEmptyBorder());
 		readButton.setBackground(Color.decode("#d9f3ff"));
 		readButton.setBorder(BorderFactory.createEmptyBorder());
-		slider.setBackground(Color.white);
+		slider.setOpaque(false);//make background transparent
+	    panel.setOpaque(false);//make it transparent
 		
-	
-	//add contents to the JFrame.
-		f.add(speedLabel);
-		f.add(fileLabel);
-		f.add(fileButton);
-		f.add(filePath);
-		f.add(readButton);
-		f.add(panel);
+		//background panel to display background image
+		//https://stackoverflow.com/a/51001352
+		//image source: https://www.pexels.com/photo/aerial-photo-of-sky-691901/
+		ImageIcon backgroundImage = new ImageIcon("pexels-chama-691901.jpg");
+	    backgroundImage = new ImageIcon(backgroundImage.getImage().getScaledInstance(400,400,Image.SCALE_SMOOTH));
+	    JLabel background = new JLabel(backgroundImage);
+	    background.setLayout(null);
+	    background.setBounds(0,0,400,400);
+	    
+	    //panel for the background
+	    JPanel mainPane = new JPanel();
+	    mainPane.setSize(400, 400);
+	    mainPane.add(background);
+	   	
+	    //add contents to the JFrame.
+	    f.add(speedLabel);
+	    f.add(fileLabel);
+	    f.add(fileButton);
+	    f.add(filePath);
+	    f.add(readButton);
+		f.add(mainPane, -1); // -1 sends it to the back
+		f.add(panel, 0); // 0 brings it to the front
 		f.pack();
 		f.setSize(400,400);
 		f.setLayout(null);
