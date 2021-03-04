@@ -123,9 +123,10 @@ public class SpeedreaderGUI extends JFrame {
 			
 		});
 		
-	//Set appearance properties
-		//references: 	https://stackoverflow.com/a/1081491
-		//				https://stackoverflow.com/a/39961146
+		/*	Set appearance properties
+		*	references: 	https://stackoverflow.com/a/1081491
+		*					https://stackoverflow.com/a/39961146
+		*/
 		
 		fileButton.setBackground(Color.decode("#d9f3ff"));
 		fileButton.setBorder(BorderFactory.createEmptyBorder());
@@ -134,10 +135,12 @@ public class SpeedreaderGUI extends JFrame {
 		slider.setOpaque(false);//make background transparent
 	    panel.setOpaque(false);//make it transparent
 		
-		//background panel to display background image
-		//https://stackoverflow.com/a/51001352
-		//image source: https://www.pexels.com/photo/aerial-photo-of-sky-691901/
-		ImageIcon backgroundImage = new ImageIcon("pexels-chama-691901.jpg");
+		/*	background panel to display background image
+		*	https://stackoverflow.com/a/51001352
+		*	image source: https://www.pexels.com/photo/aerial-photo-of-sky-691901/
+		*/
+		
+	    ImageIcon backgroundImage = new ImageIcon("pexels-chama-691901.jpg");
 	    backgroundImage = new ImageIcon(backgroundImage.getImage().getScaledInstance(400,400,Image.SCALE_SMOOTH));
 	    JLabel background = new JLabel(backgroundImage);
 	    background.setLayout(null);
