@@ -16,16 +16,19 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class SpeedreaderGUI extends JFrame {
 	
 	private static int speed;
-	private static String file;
+	private static String file = "src\\speedreader\\example.txt"; 
 	private static List<String> arr;
 
 	public SpeedreaderGUI(){
 		//help for this animation from: https://stackoverflow.com/questions/27475048/simple-java-animation-using-jframe-and-jpanel
 		 JFrame frame = new JFrame("Speed Reader");
-         frame.add(new AnimationPanel(speed, arr));//loads the animation into the frame
+		 
+		 frame.add(new AnimationPanel(speed, arr));//loads the animation into the frame
          frame.pack();
          frame.setLocationRelativeTo(null); // makes it centered
          frame.setVisible(true);
+		 frame.setSize(800, 600);
+
 	}
 	
 	public static void main(String[] args) throws InterruptedException {
@@ -46,7 +49,7 @@ public class SpeedreaderGUI extends JFrame {
 		//Buttons
 		JButton readButton = new JButton("Read");
 		readButton.setBounds(140,210,100,30);
-		readButton.setEnabled(false); //disabled until a file has been chosen
+		//readButton.setEnabled(false); //disabled until a file has been chosen
 		JButton fileButton = new JButton("Choose a file");
 		fileButton.setBounds(140,160,100,30);
 		
@@ -59,7 +62,8 @@ public class SpeedreaderGUI extends JFrame {
 		
 		//Panel for slider		
 		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createEmptyBorder(60,85,50,50));//A border is needed in order to position the slider properly.
+		panel.setBorder(BorderFactory.createEmptyBorder(60,85,10,50));//A border is needed in order to position the slider properly.
+		panel.setLocation(100, 100);
 		panel.add(slider); //panel is added to frame (below), slider is added to panel.
 		
 		
@@ -106,6 +110,7 @@ public class SpeedreaderGUI extends JFrame {
 				String next = "";
 				try {
 					in = new Scanner(new File(file));
+										
 					while(in.hasNext()) {
 						next = in.next();
 						arr.add(next);

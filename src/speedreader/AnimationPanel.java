@@ -16,6 +16,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class AnimationPanel extends JPanel {
@@ -26,6 +28,15 @@ public class AnimationPanel extends JPanel {
     private int counter = 0;
 
     public AnimationPanel(int speed, List<String> arr) {
+    	 this.setLayout(null);
+    	
+    	 //pause button
+		 JButton pauseButton = new JButton("Pause");
+		 pauseButton.setBounds(100, 525, 100, 30);
+		 
+		 this.add(pauseButton);
+		 
+		 //timer
         Timer timer = new Timer(speed, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -50,7 +61,7 @@ public class AnimationPanel extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(500, 500);
+        return new Dimension(800, 500);
     }
 
     @Override
@@ -58,7 +69,7 @@ public class AnimationPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setColor(Color.WHITE);
-        g2d.fillRect(0, 0, 500, 500);
+        g2d.fillRect(0, 25, 800, 500);
         
         //Background color - https://stackoverflow.com/a/575783 for background color
         g2d.setColor(Color.BLACK);
