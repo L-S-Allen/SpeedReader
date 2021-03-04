@@ -16,7 +16,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -28,15 +27,14 @@ public class AnimationPanel extends JPanel {
     private int counter = 0;
 
     public AnimationPanel(int speed, List<String> arr) {
-    	 this.setLayout(null);
+    	this.setLayout(null);
     	
-    	 //pause button
-		 JButton pauseButton = new JButton("Pause");
-		 pauseButton.setBounds(100, 525, 100, 30);
+    	//pause button
+		JButton pauseButton = new JButton("Start");
+		pauseButton.setBounds(100, 525, 100, 30);
+		this.add(pauseButton);
 		 
-		 this.add(pauseButton);
-		 
-		 //timer
+		//timer
         Timer timer = new Timer(speed, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,7 +50,16 @@ public class AnimationPanel extends JPanel {
                 }
             }
         });
-        timer.start();
+        
+        //action for pause button
+		pauseButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("pause");
+				stopStart(pauseButton, timer);
+			}			
+		});
+        
     }
 
     protected void changeWord(String newWord) {
@@ -82,6 +89,17 @@ public class AnimationPanel extends JPanel {
         
         g2d.drawString(current, x, y);
         g2d.dispose();
+    }
+    
+    protected void stopStart(JButton button, Timer timer) {
+    	if(button.getText() == "Pause") {
+    		button.setText("Continue");
+    		timer.stop();
+    	}
+    	else {
+    		button.setText("Pause");
+    		timer.start();
+    	}
     }
 
 }
