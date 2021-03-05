@@ -29,15 +29,35 @@ public class AnimationPanel extends JPanel {
     public AnimationPanel(int speed, List<String> arr) {
     	this.setLayout(null);
     	
-    	//pause button
+    	//buttons
 		JButton pauseButton = new JButton("Start");
 		pauseButton.setBounds(0, 525, 100, 30);
 		this.add(pauseButton);
+		
+		JButton backButton = new JButton("Back");
+		backButton.setBounds(100, 525, 100, 30);
+		this.add(backButton);
+		
+		JButton forwardButton = new JButton("Forward");
+		forwardButton.setBounds(200, 525, 100, 30);
+		this.add(forwardButton);
 		 
 		//timer
         Timer timer = new Timer(speed, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	
+            	if(counter <= 0) {
+            		backButton.setEnabled(false);
+            	}
+            	else if(counter >= arr.size()-1) {
+            		forwardButton.setEnabled(false);
+            	}
+            	else {
+            		backButton.setEnabled(true);
+            		forwardButton.setEnabled(true);
+            	}
+            	      	
             	
             	if(counter < arr.size()) {
                 	changeWord(arr.get(counter));
@@ -48,6 +68,8 @@ public class AnimationPanel extends JPanel {
                 	changeWord("The End");
                 	repaint();
                 }
+            	
+            	
             }
         });
         
@@ -56,12 +78,33 @@ public class AnimationPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				stopStart(pauseButton, timer);
+				System.out.println("pause");
+			}			
+		});
+		
+		//action for back button
+		backButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				backForward(timer, -1, arr, backButton, forwardButton);
+				System.out.println("back");
+			}			
+		});
+		
+		//action for forward button
+		forwardButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				backForward(timer, 1, arr, backButton, forwardButton);
+				System.out.println("forward");
 			}			
 		});
 		
 		//styling for non animation components
 		//Colors: #96C2F9 #D1EAE7 #0EC6B6
 		pauseButton.setBackground(Color.decode("#96C2F9"));
+		backButton.setBackground(Color.decode("#96C2F9"));
+		forwardButton.setBackground(Color.decode("#96C2F9"));
 		this.setBackground(Color.decode("#d9f3ff"));
 		
         
@@ -105,6 +148,38 @@ public class AnimationPanel extends JPanel {
     		button.setText("Pause");
     		timer.start();
     	}
+    }
+    
+    protected void backForward(Timer timer, int direction, List<String> arr, JButton backButton, JButton forwardButton) {
+    	//standard 30 word jump backwards or forwards.
+    	int amount = 30;
+    	amount *= direction;
+    	counter += amount;
+    	
+    	//error checking
+    	if(counter < 0) {
+    		counter = 0;
+    	}
+    	
+    	if(counter >= arr.size()) {
+    		counter = arr.size()-1;
+    	}
+    	
+    	if(counter <= 0) {
+    		backButton.setEnabled(false);
+    	}
+    	else if(counter >= arr.size()-1) {
+    		forwardButton.setEnabled(false);
+    	}
+    	else {
+    		backButton.setEnabled(true);
+    		forwardButton.setEnabled(true);
+    	}
+    	
+    	//paint the new starting word
+    	changeWord(arr.get(counter));
+    	repaint();
+    	counter++;   	
     }
 
 }
