@@ -17,20 +17,21 @@ This is an ongoing project that I am working on in my spare time, at the moment 
 - choose speed (words per minute) using a slider
 - read in the text file
 - display the file as an animation at the speed chosen
+- pause and continue the animation
 
 It is functional as is but is far from finished, I intend to extend it by:
 - allowing font and color customisation
-- adding: pause, skip back, skip forward, repeat and other functionality to control the flow of text
+- adding: skip back, skip forward, repeat and other functionality to control the flow of text
 - allow the speed to be changed while the file is being read
-- allow to open the text in paragraph form at the place the text is paused
+- allow opening the text in paragraph form at the place the text is paused
 - allow the user to select a paragraph to continue from
 - extend to read other file formats and not just .txt files.
 - refine the GUI to make it more attractive
 - add a title icon
 
 ### Currently working on
-- pause/start button
 - styling
+- adding functionality to skip backwards and forwards in the text.
 
 #### Contents
 - SpeedreaderGUI.java - creates a swing GUI for selecting speed and file to read and starting the animation
