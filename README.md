@@ -28,6 +28,10 @@ It is functional as is but is far from finished, I intend to extend it by:
 - refine the GUI to make it more attractive
 - add a title icon
 
+### Currently working on
+- pause/start button
+- styling
+
 #### Contents
 - SpeedreaderGUI.java - creates a swing GUI for selecting speed and file to read and starting the animation
 - TestPanel.java - a separate class for creating the animation
