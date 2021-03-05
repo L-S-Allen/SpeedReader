@@ -31,7 +31,7 @@ public class AnimationPanel extends JPanel {
     	
     	//pause button
 		JButton pauseButton = new JButton("Start");
-		pauseButton.setBounds(100, 525, 100, 30);
+		pauseButton.setBounds(0, 525, 100, 30);
 		this.add(pauseButton);
 		 
 		//timer
@@ -55,10 +55,15 @@ public class AnimationPanel extends JPanel {
 		pauseButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("pause");
 				stopStart(pauseButton, timer);
 			}			
 		});
+		
+		//styling for non animation components
+		//Colors: #96C2F9 #D1EAE7 #0EC6B6
+		pauseButton.setBackground(Color.decode("#96C2F9"));
+		this.setBackground(Color.decode("#d9f3ff"));
+		
         
     }
 

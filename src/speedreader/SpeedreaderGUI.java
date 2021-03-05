@@ -14,6 +14,8 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class SpeedreaderGUI extends JFrame {
+	//Colors: #96C2F9 #D1EAE7 #0EC6B6
+	
 	
 	private static int speed;
 	private static String file = "src\\speedreader\\example.txt"; 
@@ -22,7 +24,6 @@ public class SpeedreaderGUI extends JFrame {
 	public SpeedreaderGUI(){
 		//help for this animation from: https://stackoverflow.com/questions/27475048/simple-java-animation-using-jframe-and-jpanel
 		 JFrame frame = new JFrame("Speed Reader");
-		 
 		 frame.add(new AnimationPanel(speed, arr));//loads the animation into the frame
          frame.pack();
          frame.setLocationRelativeTo(null); // makes it centered
